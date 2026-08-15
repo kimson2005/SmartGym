@@ -13,6 +13,6 @@ class WorkoutPlan(Base):
     generated_by_ai: Mapped[bool] = mapped_column(Boolean, server_default=text("true"), nullable=False)
     plan_details: Mapped[dict] = mapped_column(JSONB, nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, server_default=text("true"), nullable=False)
-    created_at: Mapped[datetime] = mapped_column(TIMESTAMP, server_default=text("CURRENT_TIMESTAMP"), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), server_default=text("CURRENT_TIMESTAMP"), nullable=False)
 
     user = relationship("User", back_populates="workout_plans")

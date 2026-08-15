@@ -11,6 +11,6 @@ class Notification(Base):
     title: Mapped[str] = mapped_column(String(150), nullable=False)
     message: Mapped[str] = mapped_column(Text, nullable=False)
     is_read: Mapped[bool] = mapped_column(Boolean, server_default=text("false"), nullable=False)
-    created_at: Mapped[datetime] = mapped_column(TIMESTAMP, server_default=text("CURRENT_TIMESTAMP"), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), server_default=text("CURRENT_TIMESTAMP"), nullable=False)
 
     user = relationship("User", back_populates="notifications")

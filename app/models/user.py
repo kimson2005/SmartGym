@@ -14,7 +14,7 @@ class User(Base):
     role: Mapped[str] = mapped_column(String(20), server_default="member", nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, server_default=text("true"), nullable=False)
     physical_info: Mapped[dict | None] = mapped_column(JSONB)
-    created_at: Mapped[datetime] = mapped_column(TIMESTAMP, server_default=text("CURRENT_TIMESTAMP"), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), server_default=text("CURRENT_TIMESTAMP"), nullable=False)
 
     bookings = relationship("Booking", back_populates="user", cascade="all, delete-orphan")
     workout_plans = relationship("WorkoutPlan", back_populates="user", cascade="all, delete-orphan")

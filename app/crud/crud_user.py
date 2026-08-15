@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import select
 from app.models.user import User
 from app.schemas.user import UserCreate
-import passlib.hash
+import bcrypt
 
 def get_user(db: Session, user_id: int):
     return db.execute(select(User).filter(User.user_id == user_id)).scalars().first()
@@ -14,7 +14,7 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
     return db.execute(select(User).offset(skip).limit(limit)).scalars().all()
 
 def create_user(db: Session, user: UserCreate):
-    hashed_password = passlib.hash.bcrypt.hash(user.password)
+    hashed_password = bcrypt.hashpw(user.password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
     db_user = User(
         full_name=user.full_name,
         email=user.email,
