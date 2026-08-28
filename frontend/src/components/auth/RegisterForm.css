@@ -1,0 +1,347 @@
+/* ============================================================================
+ * REGISTER FORM STYLES — Smart Gym Account Creation Component
+ * ============================================================================
+ *
+ * Mirrors the LoginForm.css styling exactly, using the `register-form` BEM prefix.
+ * This ensures visual consistency between the Login and Register views.
+ *
+ * ============================================================================ */
+
+/* ── Form Container ── */
+.register-form {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ── Back to Login Button ── */
+.register-form__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #888;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 24px;
+  transition: color 0.2s ease;
+}
+
+.register-form__back:hover {
+  color: #FF6600;
+}
+
+/* ── Header Section ── */
+.register-form__header {
+  margin-bottom: 28px;
+}
+
+.register-form__title {
+  font-family: 'Inter', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.register-form__subtitle {
+  font-size: 0.95rem;
+  color: #a0a0a0;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* ── Alert Messages (identical to LoginForm) ── */
+.register-form__alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  animation: registerAlertSlideIn 0.3s ease-out;
+}
+
+@keyframes registerAlertSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.register-form__alert--error {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ff6b6b;
+}
+
+.register-form__alert--success {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+}
+
+.register-form__alert-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* ── Input Fields (identical structure to LoginForm) ── */
+.register-form__field {
+  margin-bottom: 14px;
+}
+
+.register-form__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #1a1a1a;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.register-form__input-wrapper:focus-within {
+  border-color: #FF6600;
+  box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.15);
+  background: #1e1e1e;
+}
+
+.register-form__input-icon {
+  position: absolute;
+  left: 16px;
+  color: #666;
+  transition: color 0.3s ease;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.register-form__input-wrapper:focus-within .register-form__input-icon {
+  color: #FF6600;
+}
+
+.register-form__input {
+  width: 100%;
+  padding: 14px 50px 14px 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.register-form__input::placeholder {
+  color: #666;
+  font-weight: 400;
+}
+
+.register-form__input:-webkit-autofill,
+.register-form__input:-webkit-autofill:hover,
+.register-form__input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff;
+  -webkit-box-shadow: 0 0 0 30px #1a1a1a inset !important;
+  caret-color: #ffffff;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ── Password Toggle (identical to LoginForm) ── */
+.register-form__toggle-password {
+  position: absolute;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.register-form__toggle-password:hover {
+  color: #FF6600;
+}
+
+/* ── Terms Checkbox ── */
+.register-form__checkbox-group {
+  margin-bottom: 20px;
+  margin-top: 4px;
+}
+
+.register-form__checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #a0a0a0;
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+.register-form__checkbox-label:hover {
+  color: #ffffff;
+}
+
+.register-form__checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  background: #1a1a1a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.register-form__checkbox:checked {
+  background: #FF6600;
+  border-color: #FF6600;
+}
+
+.register-form__checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.register-form__checkbox:hover {
+  border-color: #FF6600;
+}
+
+.register-form__terms-link {
+  color: #FF6600;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.register-form__terms-link:hover {
+  color: #FF8533;
+  text-decoration: underline;
+}
+
+/* ── Submit Button (identical to LoginForm) ── */
+.register-form__submit {
+  width: 100%;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #FF6600, #FF8533);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.register-form__submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.register-form__submit:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.register-form__submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, #FF7722, #FF9944);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(255, 102, 0, 0.35);
+}
+
+.register-form__submit:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(255, 102, 0, 0.2);
+}
+
+.register-form__submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ── Loading Spinner ── */
+.register-form__spinner {
+  animation: registerSpin 1s linear infinite;
+}
+
+@keyframes registerSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Footer Links ── */
+.register-form__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 24px;
+}
+
+.register-form__link-text {
+  font-size: 0.875rem;
+  color: #888;
+}
+
+.register-form__link {
+  background: none;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  color: #FF6600;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.register-form__link:hover {
+  color: #FF8533;
+  text-decoration: underline;
+}

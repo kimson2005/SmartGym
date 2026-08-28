@@ -1,0 +1,483 @@
+/* ============================================================================
+ * LOGIN PAGE STYLES — Smart Gym Split-Screen Layout
+ * ============================================================================
+ *
+ * Layout Architecture:
+ *   Desktop:  [Hero Image 50%] [Login/Register Form 50%]
+ *   Tablet:   [Hero Image 40%] [Form 60%]
+ *   Mobile:   [Stacked — Hero as compact header, Form below]
+ *
+ * Animation Architecture:
+ *   Both forms live in the same container (.form-slide-wrapper).
+ *   CSS transitions on opacity + transform create a smooth slide effect.
+ *   .form-slide--active      → Visible, centered (opacity 1, translateX 0)
+ *   .form-slide--exit-left   → Hidden, slid left (opacity 0, translateX -60px)
+ *   .form-slide--exit-right  → Hidden, slid right (opacity 0, translateX 60px)
+ *
+ * Color Palette:
+ *   Background:    #000000 (Deep Black)
+ *   Input BG:      #1A1A1A (Dark Grey)
+ *   Primary Accent: #FF6600 (Vibrant Orange)
+ *   Text:          #FFFFFF (White)
+ *   Muted Text:    #A0A0A0
+ *
+ * ============================================================================ */
+
+/* ── Page Container — Full viewport, split-screen via flexbox ── */
+.login-page {
+  display: flex;
+  min-height: 100vh;
+  background: #000000;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Top Navigation Bar ── */
+.login-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+}
+
+.login-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-nav__icon {
+  color: #FF6600;
+  filter: drop-shadow(0 0 8px rgba(255, 102, 0, 0.4));
+}
+
+.login-nav__logo {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.login-nav__hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.login-nav__hamburger:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FF6600;
+}
+
+/* ── Mobile Menu Dropdown ── */
+.login-nav__dropdown {
+  position: absolute;
+  top: 70px;
+  right: 40px;
+  background: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 8px;
+  min-width: 180px;
+  animation: dropdownFadeIn 0.2s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-nav__dropdown-link {
+  display: block;
+  padding: 12px 16px;
+  color: #a0a0a0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.login-nav__dropdown-link:hover {
+  color: #ffffff;
+  background: rgba(255, 102, 0, 0.1);
+}
+
+/* ====================================================================
+ * LEFT PANEL — Hero Image
+ * ==================================================================== */
+.login-page__hero {
+  flex: 1;
+  position: relative;
+  /* Using a high-quality Unsplash gym/fitness image */
+  background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+/* ── Dark overlay for text readability ── */
+.login-page__hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: 60px 50px;
+}
+
+/* ── Hero Text Content ── */
+.login-page__hero-content {
+  max-width: 480px;
+}
+
+.login-page__hero-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(255, 102, 0, 0.15);
+  border: 1px solid rgba(255, 102, 0, 0.3);
+  border-radius: 20px;
+  color: #FF6600;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.login-page__hero-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.login-page__hero-highlight {
+  color: #FF6600;
+  text-shadow: 0 0 30px rgba(255, 102, 0, 0.3);
+}
+
+.login-page__hero-desc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+/* ── Hero Stats ── */
+.login-page__hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.login-page__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.login-page__stat-number {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #FF6600;
+}
+
+.login-page__stat-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.login-page__stat-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ====================================================================
+ * RIGHT PANEL — Form Panel (contains Login + Register)
+ * ==================================================================== */
+.login-page__form-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 60px 40px;
+  background: #000000;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Subtle decorative gradient orb behind the form */
+.login-page__form-panel::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 102, 0, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.login-page__form-container {
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ====================================================================
+ * FORM SLIDE ANIMATION SYSTEM
+ * ====================================================================
+ *
+ * Both forms are stacked in .form-slide-wrapper using CSS Grid.
+ * Only one is visible at a time (controlled by .form-slide--active).
+ * The transition uses opacity + translateX for a smooth slide effect.
+ *
+ * Duration: 400ms with cubic-bezier for a premium "ease-out" feel.
+ * ==================================================================== */
+
+.form-slide-wrapper {
+  position: relative;
+  display: grid;
+  /* Both forms occupy the same grid cell (row 1, col 1) */
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.form-slide {
+  /* Both forms stack on top of each other in the same grid cell */
+  grid-row: 1;
+  grid-column: 1;
+  /* Smooth transition for opacity and transform */
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Prevent interaction with the hidden form */
+  pointer-events: none;
+}
+
+/* ── Active form: fully visible, centered ── */
+.form-slide--active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: all;
+}
+
+/* ── Login form exits: slides to the left and fades out ── */
+.form-slide--exit-left {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+
+/* ── Register form exits: slides to the right and fades out ── */
+.form-slide--exit-right {
+  opacity: 0;
+  transform: translateX(60px);
+}
+
+/* ── Footer ── */
+.login-page__footer {
+  margin-top: auto;
+  padding-top: 40px;
+  text-align: center;
+}
+
+.login-page__footer p {
+  font-size: 0.75rem;
+  color: #444;
+  letter-spacing: 0.05em;
+}
+
+/* ====================================================================
+ * RESPONSIVE BREAKPOINTS
+ * ==================================================================== */
+
+/* ── Tablet ── */
+@media (max-width: 1200px) {
+  .login-page__hero-tagline {
+    font-size: 2.4rem;
+  }
+
+  .login-page__hero-overlay {
+    padding: 40px 36px;
+  }
+
+  .login-page__form-panel {
+    padding: 80px 40px 40px;
+  }
+}
+
+/* ── Small Tablet / Large Phone ── */
+@media (max-width: 968px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  /* Hero becomes a compact header section */
+  .login-page__hero {
+    min-height: 320px;
+    flex: none;
+  }
+
+  .login-page__hero-overlay {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 30px 40px;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.85) 100%
+    );
+  }
+
+  .login-page__hero-content {
+    max-width: 100%;
+  }
+
+  .login-page__hero-tagline {
+    font-size: 2rem;
+  }
+
+  .login-page__hero-stats {
+    justify-content: center;
+  }
+
+  .login-page__form-panel {
+    min-height: auto;
+    flex: 1;
+    padding: 40px 30px;
+    justify-content: flex-start;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  .login-nav {
+    padding: 16px 20px;
+  }
+
+  .login-nav__dropdown {
+    right: 20px;
+    left: 20px;
+    min-width: auto;
+  }
+
+  .login-page__hero {
+    min-height: 260px;
+  }
+
+  .login-page__hero-tagline {
+    font-size: 1.6rem;
+  }
+
+  .login-page__hero-desc {
+    font-size: 0.85rem;
+    display: none;
+  }
+
+  .login-page__hero-overlay {
+    padding: 70px 20px 30px;
+  }
+
+  .login-page__hero-stats {
+    gap: 16px;
+  }
+
+  .login-page__stat-number {
+    font-size: 1.2rem;
+  }
+
+  .login-page__form-panel {
+    padding: 30px 20px;
+  }
+
+  .login-form__title,
+  .register-form__title {
+    font-size: 1.5rem;
+  }
+
+  .login-form__input,
+  .register-form__input {
+    padding: 14px 44px 14px 44px;
+    font-size: 0.9rem;
+  }
+
+  .login-form__submit,
+  .register-form__submit {
+    padding: 14px 28px;
+    font-size: 0.9rem;
+  }
+
+  /* Reduce slide distance on mobile for a tighter feel */
+  .form-slide--exit-left {
+    transform: translateX(-30px);
+  }
+
+  .form-slide--exit-right {
+    transform: translateX(30px);
+  }
+}
+
+/* ── Very Small Mobile ── */
+@media (max-width: 380px) {
+  .login-page__hero {
+    min-height: 200px;
+  }
+
+  .login-page__hero-badge {
+    display: none;
+  }
+
+  .login-page__hero-tagline {
+    font-size: 1.4rem;
+  }
+
+  .login-page__hero-stats {
+    display: none;
+  }
+
+  .login-form__title,
+  .register-form__title {
+    font-size: 1.3rem;
+  }
+}

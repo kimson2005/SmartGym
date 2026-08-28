@@ -1,0 +1,100 @@
+.scan-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.scan-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  padding: 40px;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.scan-card h2 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.scan-card p {
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.scan-btn {
+  font-size: 1.1rem;
+  padding: 12px 30px;
+}
+
+.spin {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.summary-cards {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.summary-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  text-align: center;
+}
+
+.warning-card {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.summary-card h4 {
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.big-num {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.warning-card .big-num {
+  color: var(--danger);
+}
+
+.details-title {
+  color: white;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.action-list {
+  font-size: 0.85rem;
+  padding-left: 0;
+}
+
+.action-list li {
+  margin-bottom: 4px;
+}

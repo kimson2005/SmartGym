@@ -1,0 +1,158 @@
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* TRAINERS PAGE STYLES                                                    */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Tab Navigation ── */
+.tab-nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  background: var(--bg-card);
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  width: fit-content;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  position: relative;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+  background: var(--accent-gradient);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 51, 51, 0.3);
+}
+
+.tab-badge {
+  background: #ef4444;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  animation: pulse-badge 2s infinite;
+}
+
+@keyframes pulse-badge {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ── Specialty Tag ── */
+.specialty-tag {
+  background: rgba(255, 102, 0, 0.15);
+  color: #FF6600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* ── Rate Cell ── */
+.rate-cell {
+  font-weight: 600;
+  color: var(--success);
+}
+
+/* ── Bio Cell ── */
+.bio-cell {
+  max-width: 200px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* ── Booking Filter Bar ── */
+.booking-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-card);
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: fit-content;
+  margin-bottom: 16px;
+}
+
+/* ── Booking Action Buttons ── */
+.booking-actions {
+  gap: 6px;
+}
+
+.action-btn.confirm {
+  color: var(--success);
+}
+.action-btn.confirm:hover {
+  background: rgba(34, 197, 94, 0.15);
+}
+
+.action-btn.reject {
+  color: var(--danger);
+}
+.action-btn.reject:hover {
+  background: rgba(239, 68, 68, 0.15);
+}
+
+.action-btn.complete {
+  color: var(--info);
+}
+.action-btn.complete:hover {
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.action-btn.cancel {
+  color: var(--warning);
+}
+.action-btn.cancel:hover {
+  background: rgba(245, 158, 11, 0.15);
+}
+
+/* ── Textarea in Modal ── */
+.form-control[rows] {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .tab-nav {
+    width: 100%;
+  }
+
+  .tab-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+
+  .tab-btn span:not(.tab-badge) {
+    display: none;
+  }
+
+  .booking-filter-bar {
+    width: 100%;
+  }
+}
